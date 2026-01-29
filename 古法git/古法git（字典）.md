@@ -27,7 +27,7 @@ git checkout [commit id]#的任意一个
 
 绑定仓库：git remote add origin [仓库链接] #origin是远程仓库的别名，也可以是其他名字
 
-推送代码到远程仓库：git push [别名] [分支]
+推送代码到远程仓库：git push [别名] [本地分支]:[远程分支]
 
 拉取远程仓库的内容到本地：git pull [别名] [分支]
 
