@@ -20,7 +20,7 @@ git init
 
 ```
 git config --global user.name "用户名"
-git config --global user.name "邮箱" # 两条命令的双引号也要输进去
+git config --global user.email "邮箱" # 两条命令的双引号也要输进去
 ```
 
 - 用ssh绑定远程仓库
