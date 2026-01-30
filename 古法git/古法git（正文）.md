@@ -26,9 +26,9 @@ git config --global user.email "邮箱" # 两条命令的双引号也要输进�
 - 用ssh绑定远程仓库
 
 1. `sudo pacman -S openssh`下载ssh工具，至于ssh是什么，看[这里](https://www.cainiaojc.com/ssh/ssh-basic.html)
-2. 输入`ssh-keygen -t rsa -C [邮箱]`中括号不用输
+2. 输入`ssh-keygen -t rsa -C [邮箱]`中括号不用输,回车
 
-3. 按照指引走，看到一段ascii图就说明成功了，此时找到public那行，进入上面说的文件目录，复制里面的内容
+3. 看到第一个提示不用管，直接回车，第二个提示输入密码（不回显），以后每次上传东西都要输这个密码，看到一段ascii图就说明成功了，此时找到public那行，进入上面说的文件目录，复制里面的内容
 
 4. 打开github,点击自己的头像，选择settings,找到ssh and gpg keys选项，点击new ssh key,title中随便输一个名字，并把刚刚复制的字符粘贴到输入框中
 
@@ -44,7 +44,10 @@ git config --global user.email "邮箱" # 两条命令的双引号也要输进�
   - 将自己的本地仓库绑定到github远程仓库（干这个要ssh）：
 
   ```
-  git remote add origin [仓库链接] #origin是远程仓库的别名，也可以是其他名字
+  git remote add origin [ssh链接！！！] #origin是远程仓库的别名，也可以是其他名字
+  ```
+
+  - 如果上一步踩到坑了，输入了https链接（https开头而不是git开头），会导致后面拉取和上传东西时要同时输github账号和密码且死活鉴权失败，输入`git remote set-url origin [shh链接！！！]`重试
   ```
 
 ## 使用git进行代码的版本控制
@@ -100,6 +103,15 @@ git diff [commit id] #查看某次commit具体修改了什么
 git reset [commit id]
 git checkout [commit id] #这俩用于回溯代码，相当于回档，用哪个都行
 ```
+
+### 解绑
+
+如果不想干了，想把本地仓库与远程仓库解绑，输入：
+```
+git remote remove oringin
+```
+
+如果想使本地仓库摆脱git的“控制”,把本地仓库的.git文件删了就行了
 
 ### 学到这里，你就可以用git完成代码提交和版本控制了（~~以及管理github网盘~~），看个[电子榨菜](https://www.bilibili.com/video/BV1pwC6BxEeb/ "咕咕嘎嘎")放松一下罢，看懂这个的话，我只能说：
 
