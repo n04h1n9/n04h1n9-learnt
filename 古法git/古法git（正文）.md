@@ -20,15 +20,15 @@ git init
 
 ```
 git config --global user.name "用户名"
-git config --global user.name "邮箱" # 两条命令的双引号也要输进去
+git config --global user.email "邮箱" # 两条命令的双引号也要输进去
 ```
 
 - 用ssh绑定远程仓库
 
 1. `sudo pacman -S openssh`下载ssh工具，至于ssh是什么，看[这里](https://www.cainiaojc.com/ssh/ssh-basic.html)
-2. 输入`ssh-keygen -t rsa -C [邮箱]`中括号不用输
+2. 输入`ssh-keygen -t rsa -C [邮箱]`中括号不用输,回车
 
-3. 按照指引走，看到一段ascii图就说明成功了，此时找到public那行，进入上面说的文件目录，复制里面的内容
+3. 看到第一个提示不用管，直接回车，第二个提示输入密码（不回显），以后每次上传东西都要输这个密码，看到一段ascii图就说明成功了，此时找到public那行，进入上面说的文件目录，复制里面的内容
 
 4. 打开github,点击自己的头像，选择settings,找到ssh and gpg keys选项，点击new ssh key,title中随便输一个名字，并把刚刚复制的字符粘贴到输入框中
 
@@ -44,8 +44,12 @@ git config --global user.name "邮箱" # 两条命令的双引号也要输进去
   - 将自己的本地仓库绑定到github远程仓库（干这个要ssh）：
 
   ```
-  git remote add origin [仓库链接] #origin是远程仓库的别名，也可以是其他名字
+  git remote add origin [ssh链接！！！] #origin是远程仓库的别名，也可以是其他名字
   ```
+
+  - 如果上一步踩到坑了，输入了https链接（https开头而不是git开头），会导致后面拉取和上传东西时要同时输github账号和密码且死活鉴权失败，输入`git remote set-url origin [shh链接！！！]`重试
+
+  如果你想改仓库别名，输入'git remote rename origin hyw'把仓库别名从origin改成hyw
 
 ## 使用git进行代码的版本控制
 
@@ -68,6 +72,7 @@ git branch #查看当前项目有什么分支，高亮分支则是自己所处�
 git checkout -b develop #创建并跳转到develop分支
 git checkout [分支名] #跳转到某分支，方括号不用打
 git merge [要合并的分支] #把选定分支的代码合并到自己所处分支，也就是常说的合并代码，方括号不用打
+git branch -m main #如果你在master分支，要改名成main分支时，用这个
 ```
 
 ### 提交代码
@@ -87,7 +92,8 @@ git pull [仓库别名] [分支] #拉取代码到本地
 git push [仓库别名] [本地分支]:[远程分支] #推送本地代码，俩命令方括号不用打
 ```
 
-> tip:如果远程仓库跟本地不一致的话，git不让你push。你得先pull,确保本地仓库跟远程仓库一样，再push
+> tips:1. 如果远程仓库跟本地不一致的话，git不让你push。你得先pull,确保本地仓库跟远程仓库一样，再push
+> 2. pull不了的话强行pull:`git pull origin main --allow-unrelated-histories
 
 ### 历史与回溯
 
@@ -100,6 +106,15 @@ git diff [commit id] #查看某次commit具体修改了什么
 git reset [commit id]
 git checkout [commit id] #这俩用于回溯代码，相当于回档，用哪个都行
 ```
+
+### 解绑
+
+如果不想干了，想把本地仓库与远程仓库解绑，输入：
+```
+git remote remove oringin
+```
+
+如果想使本地仓库摆脱git的“控制”,把本地仓库的.git文件删了就行了
 
 ### 学到这里，你就可以用git完成代码提交和版本控制了（~~以及管理github网盘~~），看个[电子榨菜](https://www.bilibili.com/video/BV1pwC6BxEeb/ "咕咕嘎嘎")放松一下罢，看懂这个的话，我只能说：
 

@@ -53,7 +53,11 @@ sudo snapper -c home create-config /home #在家目录启用快照功能
 sudo snapper -c root create-config / #在根目录启用快照功能
 sudo snapper -c home create --description "快照描述，不想填可以连同前面的--description一起省略" #创建快照，引号要打
 sudo snapper -c home list #展示快照列表，找到你要回档的快照
+<<<<<<< HEAD
 sudo snapper -c home undochange 0..1 #0是当前状态序号，1是要回档的快照序号，按需改成其他数字，执行了这步就可以回档了
+=======
+sudo snapper -c home undochange 1..0 #0是当前状态序号，1是要回档的快照序号，按需改成其他数字，执行了这步就可以回档了
+>>>>>>> ca34e6fbb0a1ee67151b73002847d7f398a06606
 ```
 
 tip:有些安装的软件是全局的（不是下载在你的家目录而是下载在系统的根目录），你回档家目录并不能达到卸载软件的效果，应该把家目录和根目录都进行回档，至于家目录和根目录是什么，在后面会讲
@@ -77,3 +81,5 @@ tip:有些安装的软件是全局的（不是下载在你的家目录而是下�
 - 桌面环境与窗口管理器
 
 不像win一样只能用一种图形界面，在linux上你可以更换桌面环境，甚至还可以安装多个桌面环境，想用哪个用哪个，最常用的桌面环境是
+
+未完待续......
