@@ -1,7 +1,0 @@
-[[mgr.prepend_keymap]]
-on = "M"
-run = "plugin mount"
-
-[[mgr.prepend_keymap]]
-on = "l"
-run = "plugin smart-enter"
